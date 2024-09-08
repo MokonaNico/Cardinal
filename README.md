@@ -1,4 +1,4 @@
-# DISTRHO Cardinal
+# DISTRHO Cardinal With Custom Plugins
 
 *Cardinal, the Rack!*
 
