@@ -1034,6 +1034,11 @@ REPELZEN_CUSTOM = Blank Mixer Werner tanh_pade
 PLUGIN_FILES += $(filter-out Sapphire/src/plugin.cpp,$(wildcard Sapphire/src/*.cpp))
 
 # --------------------------------------------------------------
+# Sha-Bang-Modules
+
+PLUGIN_FILES += $(filter-out Sha-Bang-Modules/src/plugin.cpp,$(wildcard Sha-Bang-Modules/src/*.cpp))
+
+# --------------------------------------------------------------
 # sonusmodular
 
 PLUGIN_FILES += $(filter-out sonusmodular/src/sonusmodular.cpp,$(wildcard sonusmodular/src/*.cpp))
@@ -2724,6 +2729,13 @@ $(BUILD_DIR)/Sapphire/%.cpp.o: Sapphire/%.cpp
 	$(SILENT)$(CXX) $< $(BUILD_CXX_FLAGS) -std=gnu++17 -c -o $@ \
 		$(foreach m,$(SAPPHIRE_CUSTOM),$(call custom_module_names,$(m),Sapphire)) \
 		-DpluginInstance=pluginInstance__sapphire
+
+$(BUILD_DIR)/Sha-Bang-Modules/src/%.cpp.o: Sha-Bang-Modules/src/%.cpp
+	-@mkdir -p "$(shell dirname $(BUILD_DIR)/$<)"
+	@echo "Compiling $<"
+	$(SILENT)$(CXX) $< $(BUILD_CXX_FLAGS) -c -o $@ \
+		$(foreach m,$(SHA_BANG_MODULES_CUSTOM),$(call custom_module_names,$(m),Sha-Bang-Modules)) \
+		-DpluginInstance=pluginInstance__sha_bang_modules
 
 $(BUILD_DIR)/sonusmodular/%.cpp.o: sonusmodular/%.cpp
 	-@mkdir -p "$(shell dirname $(BUILD_DIR)/$<)"

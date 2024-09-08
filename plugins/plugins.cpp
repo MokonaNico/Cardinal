@@ -822,6 +822,9 @@ void addThemeMenuItems(Menu*, ModuleTheme*) {}
 // Sapphire
 #include "Sapphire/src/plugin.hpp"
 
+// Sha-Bang-Modules
+#include "Sha-Bang-Modules/src/plugin.hpp"
+
 // sonusmodular
 #include "sonusmodular/src/sonusmodular.hpp"
 
@@ -968,6 +971,7 @@ Plugin* pluginInstance__RCM;
 Plugin* pluginInstance__RebelTech;
 Plugin* pluginInstance__repelzen;
 Plugin* pluginInstance__sapphire;
+Plugin* pluginInstance__sha_bang_modules;
 Plugin* pluginInstance__sonusmodular;
 Plugin* pluginInstance__StarlingVia;
 Plugin* pluginInstance__stocaudio;
@@ -3093,6 +3097,35 @@ static void initStatic__Sapphire()
     }
 }
 
+static void initStatic__Sha_bang_modules()
+{
+    Plugin* const p = new Plugin;
+    pluginInstance__sha_bang_modules = p;
+
+    const StaticPluginLoader spl(p, "Sha-Bang-Modules");
+    if (spl.ok())
+    {
+        p->addModel(modelStochSeq);
+        p->addModel(modelStochSeq4);
+        p->addModel(modelPolyrhythmClock);
+        p->addModel(modelRandGates);
+        p->addModel(modelRandRoute);
+        p->addModel(modelNeutrinode);
+        p->addModel(modelCosmosis);
+        p->addModel(modelJeremyBlankPanel);
+        p->addModel(modelQubitCrusher);
+        p->addModel(modelPhotron);
+        p->addModel(modelPhotronPanel);
+        p->addModel(modelPhotronStrip);
+        p->addModel(modelOrbitones);
+        p->addModel(modelAbsorptionSpectrum);
+        p->addModel(modelTalea);
+        p->addModel(modelCollider);
+        p->addModel(modelStochSeq4X);
+        p->addModel(modelStochSeqGrid);
+    }
+}
+
 static void initStatic__sonusmodular()
 {
     Plugin* const p = new Plugin;
@@ -3497,6 +3530,7 @@ void initStaticPlugins()
     initStatic__RebelTech();
     initStatic__repelzen();
     initStatic__Sapphire();
+    initStatic__Sha_bang_modules();
     initStatic__sonusmodular();
     initStatic__StarlingVia();
     initStatic__stocaudio();
